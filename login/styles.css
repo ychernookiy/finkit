@@ -1,0 +1,56 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #CBECFF;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .avatar_user{max-width: 250px;
+    height: auto;
+    border-radius: 50%;
+  }
+  .hidden {
+    display: none;
+  }
+  
+  #success-message {
+    color: green;
+    animation: fadeOut 10s forwards;
+  }
+
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    form {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+  
+  
+  
+
+  
+  
+  

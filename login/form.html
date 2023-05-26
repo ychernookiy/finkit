@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="start_block_login">
+    <form id="login-form">
+      <label for="username">Логин:</label>
+      <input type="text" id="usernam" name="username" required>
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password" required>
+      <button class="btn" type="submit">Войти</button>
+      <div id="error-message" class="hidden"></div>
+    </form>
+    <div id="success-message" class="hidden"></div>
+    <div id="user-info" class="hidden">
+      <br/>Пользователь: <span id="username"></span>
+      <br/>Дата рождения: <span id="birthdate"></span>
+      <br/><img id="avatar" class="avatar_user" src="" alt="Аватар">
+    </div>
+  </div>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const response = await fetch('http://client-office.site-dev.pro/login/auth.php', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+      if (data.error) {
+  // обработка ошибки
+} else {
+  // скрыть форму авторизации
+  document.getElementById('login-form').classList.add('hidden');
+  // показать сообщение об успешной авторизации
+  document.getElementById('success-message').textContent = 'Успешная авторизация!';
+  document.getElementById('success-message').classList.remove('hidden');
+  setTimeout(() => {
+    document.getElementById('success-message').classList.add('hidden');
+  }, 10000);
+  // показать информацию о пользователе
+  document.getElementById('username').textContent = data.user.username;
+  document.getElementById('birthdate').textContent = data.user.birthdate;
+  document.getElementById('avatar').src = data.user.image_link;
+  document.getElementById('user-info').classList.remove('hidden');console.log(document.getElementById('username')); // отладочный вывод
+}
+    });
+  </script>
+</body>
+</html>
