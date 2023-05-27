@@ -33,21 +33,17 @@
       });
       const data = await response.json();
       if (data.error) {
-  // обработка ошибки
 } else {
-  // скрыть форму авторизации
   document.getElementById('login-form').classList.add('hidden');
-  // показать сообщение об успешной авторизации
   document.getElementById('success-message').textContent = 'Успешная авторизация!';
   document.getElementById('success-message').classList.remove('hidden');
   setTimeout(() => {
     document.getElementById('success-message').classList.add('hidden');
   }, 10000);
-  // показать информацию о пользователе
   document.getElementById('username').textContent = data.user.username;
   document.getElementById('birthdate').textContent = data.user.birthdate;
   document.getElementById('avatar').src = data.user.image_link;
-  document.getElementById('user-info').classList.remove('hidden');console.log(document.getElementById('username')); // отладочный вывод
+  document.getElementById('user-info').classList.remove('hidden');console.log(document.getElementById('username'));
 }
     });
   </script>
